@@ -1,0 +1,10 @@
+<h1><%= @document.name %></h1>
+<% if @document.file.attached? %>
+  <p><strong>PDF File:</strong></p>
+  <%= link_to "Download PDF", rails_blob_path(@document.file, disposition: "attachment") %><br>
+  <br>
+  <%=link_to "Back_to_documents", documents_path%><br>
+  <iframe src="<%= rails_blob_path(@document.file) %>" width="100%" height="700"></iframe>
+<% else %>
+  <p>No PDF file attached.</p>
+<% end %>

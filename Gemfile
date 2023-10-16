@@ -70,3 +70,15 @@ group :test do
   gem "selenium-webdriver"
 
 end
+gem 'active_storage_validations'
+gem 'simple_form'
+gem "bootstrap"
+
+gem "sassc-rails"
+# Use jquery as the JavaScript librar
+gem 'jquery-rails'
+
+# Use jquery-ui for pretty UI
+gem 'jquery-ui-rails'
+gem 'devise'
+gem 'cancancan'
