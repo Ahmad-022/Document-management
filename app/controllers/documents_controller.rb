@@ -1,15 +1,17 @@
 class DocumentsController < ApplicationController
+  
+  before_action :set_document, only: [:show, :update, :edit, :destroy]
     def index 
-        @documents = Document.all
+        @documents = current_user.documents.order(:position)
     end
     def new
         @document = Document.new
     end
     def edit
-      @document = Document.find(params[:id])
+
     end
     def create
-        @document = Document.new(document_params)
+        @document = current_user.documents.new(document_params)
         # @document.file.attach(params[:document][:image])
         respond_to do |format|
           if @document.save
@@ -20,10 +22,9 @@ class DocumentsController < ApplicationController
         end
       end
     def update
-      @document= Document.find(params[:id])
         respond_to do |format|
           if @document.update(document_params)
-            format.html{ redirect_to documents_path, notice: 'User was successfully created'}
+            format.html{ redirect_to documents_path, notice: 'document was successfully updated'}
           else
             format.html { render :new, status: :unprocessable_entity }
           end
@@ -31,20 +32,29 @@ class DocumentsController < ApplicationController
     end
 
   def show
-    @document= Document.find(params[:id])
   end
     def destroy
-      @document=Document.find(params[:id])
       @document.destroy
       respond_to do |format|
-        format.html { redirect_to documents_path, notice: "Doctor has successfully Deleted." }
+        format.html { redirect_to documents_path, notice: "Document has successfully Deleted." }
   
       end
     end
 
-
+    def reorder
+      params[:documents].each do |document_params|
+        Task.find(document_params[:id]).update(position: document_params[:position])
+      end
+  
+      head :ok
+    end
 
     def document_params
       params.require(:document).permit(:name, :file)
+    end
+    def set_document
+      @document = current_user.documents.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => error
+        redirect_to documents_path, notice: error
     end
 end

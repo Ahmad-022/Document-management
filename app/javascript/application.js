@@ -9,3 +9,8 @@ import "jquery_ujs"
 import "./jquery_ui"
 //= require jquery-ui/widgets/sortable
 //= require rails_sortable
+
+//= require_tree 
+$(function() {
+    $('.sortable').railsSortable();
+  });
