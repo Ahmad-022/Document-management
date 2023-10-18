@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations'
+  }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-   root "documents#index"
-   resources :users
-   resources :documents
+  #  get 'user_documents/:user_id' => 'documents#user', as: :user_documents
+  root "documents#index" 
+    scope :users do
+     resources :documents do
+      collection do
+        patch :reorder
+      end
+    end
+  end
   # Defines the root path route ("/")
   # root "articles#index"
 end

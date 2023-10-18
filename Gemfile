@@ -56,7 +56,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
+  gem "letter_opener"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -81,4 +81,7 @@ gem 'jquery-rails'
 # Use jquery-ui for pretty UI
 gem 'jquery-ui-rails'
 gem 'devise'
+gem 'font-awesome-sass'
+gem "acts_as_list"
+gem 'rails_sortable'
 gem 'cancancan'
