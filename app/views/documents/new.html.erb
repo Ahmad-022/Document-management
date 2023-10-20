@@ -1,18 +1,5 @@
 <div class="text-center row">
-  <p><%=notice%></p>
   <%=form_with(model: @document, local: true) do |f|%>
-    <% invalid = @document.errors.include?(:name) %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control #{'is-invalid' if invalid}" %>
-      <% if invalid %>
-        <div class="invalid-feedback d-block">
-          <% @document.errors.full_messages_for(:name).each do |error_message| %>
-            <%= error_message %>.
-          <% end %>
-        </div>
-      <% end %>
-    </div>
     <% invalid = @document.errors.include?(:file) %>
     <div class="form-group">
       <%= f.label :file %>
@@ -25,7 +12,9 @@
         </div>
       <% end %>
     </div>
-    <%=f.submit :Create%>
+    <%=f.submit :Create,class:"btn btn-primary mt-4"%>
   <%end%>
-  <%=link_to "Back_to_Users", documents_path%>
+  <div>
+    <%=link_to "Back to Users", documents_path,class:"btn btn-success mt-4"%>
+  </div>
 </div>

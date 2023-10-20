@@ -16,10 +16,9 @@
  @import "bootstrap";
  @import "jquery-ui.css";
 
- .a{
-    color: red;
+ @import "font-awesome";
+
+ .ui-sortable-handle{
+    cursor: pointer;
   }
-  
-  
-  
   

@@ -7,10 +7,11 @@ import "bootstrap"
 import "jquery"
 import "jquery_ujs"
 import "./jquery_ui"
+import "@fortawesome/fontawesome-free"
+//= require jquery
+//= require jquery_ujs
 //= require jquery-ui/widgets/sortable
 //= require rails_sortable
+//= require jquery-ui
 
-//= require_tree 
-$(function() {
-    $('.sortable').railsSortable();
-  });
+

@@ -2,8 +2,18 @@ class DocumentsController < ApplicationController
   
   before_action :set_document, only: [:show, :update, :edit, :destroy]
     def index 
-        @documents = current_user.documents.order(:position)
+       @user=current_user
+        @documents = @user.documents.order(:position)
     end
+    
+    def reorder
+      params[:document].each_with_index do |id, index|
+      Document.find(id).update(position: index + 1)
+       end
+
+      head :ok
+    end
+
     def new
         @document = Document.new
     end
@@ -11,7 +21,8 @@ class DocumentsController < ApplicationController
 
     end
     def create
-        @document = current_user.documents.new(document_params)
+        @user=current_user
+        @document = @user.documents.new(document_params)
         # @document.file.attach(params[:document][:image])
         respond_to do |format|
           if @document.save
@@ -31,8 +42,8 @@ class DocumentsController < ApplicationController
         end
     end
 
-  def show
-  end
+    def show
+    end
     def destroy
       @document.destroy
       respond_to do |format|
@@ -41,18 +52,12 @@ class DocumentsController < ApplicationController
       end
     end
 
-    def reorder
-      params[:documents].each do |document_params|
-        Task.find(document_params[:id]).update(position: document_params[:position])
-      end
-  
-      head :ok
-    end
 
     def document_params
-      params.require(:document).permit(:name, :file)
+      params.require(:document).permit(:position, :file)
     end
     def set_document
+      @user=current_user
       @document = current_user.documents.find(params[:id])
       rescue ActiveRecord::RecordNotFound => error
         redirect_to documents_path, notice: error
