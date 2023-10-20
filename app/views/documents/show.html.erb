@@ -1,4 +1,4 @@
-<h1><%= @document.name %></h1>
+<h1><%= @document.file.filename %></h1>
 <% if @document.file.attached? %>
   <p><strong>PDF File:</strong></p>
   <%= link_to "Download PDF", rails_blob_path(@document.file, disposition: "attachment") %><br>

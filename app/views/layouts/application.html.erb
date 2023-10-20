@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= javascript_include_tag 'documents' %>
+    <%= javascript_include_tag 'application' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   <body>
     <%=render'shared/header'%>
-    <%= javascript_include_tag 'documents' %>
     <div class= "container">
       <div class="row text-center">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
         <%= yield %>
       </div>
     </div>
