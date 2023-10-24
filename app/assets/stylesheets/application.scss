@@ -13,12 +13,26 @@
  *= require_tree .
  *= require_self
  */
+  
  @import "bootstrap";
  @import "jquery-ui.css";
 
  @import "font-awesome";
+ 
+ 
+ul{
+    list-style: none;
+    margin: 1.75rem 0;
+    padding-left: 1rem;
+  li{
+      background: lightgray;
+      border-radius: .5rem;
+      margin-top: 1rem;
+      padding: 1rem;
+  }
+}
 
- .ui-sortable-handle{
+   .ui-sortable-handle{
     cursor: pointer;
   }
   
