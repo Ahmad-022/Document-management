@@ -1,9 +1,13 @@
 <div class="text-center row">
-  <p><%=notice%></p>
   <%=form_with(model: @document, local: true) do |f|%>
     <% invalid = @document.errors.include?(:file) %>
     <div class="form-group">
       <%= f.label :file %>
+      <% if @document.file.attached? %>
+        <p>Current PDF File: <%= @document.file.filename %></p>
+      <% else %>
+        <p>No PDF file attached.</p>
+      <% end %>
       <%= f.file_field :file, class: "form-control #{'is-invalid' if invalid}" %>
       <% if invalid %>
         <div class="invalid-feedback d-block">
@@ -13,7 +17,10 @@
         </div>
       <% end %>
     </div>
-    <%=f.submit :Create%>
+    <%=f.submit :Upload, class:"btn btn-secondary"%>
   <%end%>
-  <%=link_to "Back_to_Users", documents_path%>
+  <div class="text-start"><%=link_to documents_path, class:"btn btn-primary mb-4" do%>
+      <i class="fa-regular fa-circle-left fa-xl"></i>Back
+    <%end%>
+  </div>
 </div>

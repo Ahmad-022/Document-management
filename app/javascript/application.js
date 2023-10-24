@@ -2,16 +2,16 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
+import "@rails/request.js"
 
 import "bootstrap"
 import "jquery"
 import "jquery_ujs"
 import "./jquery_ui"
 import "@fortawesome/fontawesome-free"
+//= require sortable.min
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/widgets/sortable
 //= require rails_sortable
 //= require jquery-ui
-
-

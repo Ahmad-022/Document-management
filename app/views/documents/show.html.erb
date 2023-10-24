@@ -1,9 +1,15 @@
 <h1><%= @document.file.filename %></h1>
 <% if @document.file.attached? %>
   <p><strong>PDF File:</strong></p>
-  <%= link_to "Download PDF", rails_blob_path(@document.file, disposition: "attachment") %><br>
+  <div>
+    <%= link_to (rails_blob_path(@document.file, disposition: "attachment") if @document.file.attached?), class:"btn btn-primary" do %> <i class="fa-solid fa-download"></i>Download<%end%> </div>
   <br>
-  <%=link_to "Back_to_documents", documents_path%><br>
+  <br>
+  <div class="text-start"><%=link_to documents_path, class:"btn btn-primary mb-4" do%>
+      <i class="fa-regular fa-circle-left fa-xl"></i>Back
+    <%end%>
+  </div>
+  <br>
   <iframe src="<%= rails_blob_path(@document.file) %>" width="100%" height="700"></iframe>
 <% else %>
   <p>No PDF file attached.</p>

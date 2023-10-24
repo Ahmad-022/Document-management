@@ -3,16 +3,9 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :update, :edit, :destroy]
     def index 
        @user=current_user
-        @documents = @user.documents.order(:position)
+        @documents = @user.documents
     end
-    
-    def reorder
-      params[:document].each_with_index do |id, index|
-      Document.find(id).update(position: index + 1)
-       end
-
-      head :ok
-    end
+   
 
     def new
         @document = Document.new
@@ -60,6 +53,6 @@ class DocumentsController < ApplicationController
       @user=current_user
       @document = current_user.documents.find(params[:id])
       rescue ActiveRecord::RecordNotFound => error
-        redirect_to documents_path, notice: error
+        redirect_to documents_path, notice: "No such document"
     end
 end

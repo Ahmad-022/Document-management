@@ -86,3 +86,5 @@ gem "acts_as_list"
 gem 'rails_sortable'
 gem 'cancancan'
 gem 'font-awesome-rails'
+gem 'requestjs-rails'
+gem 'foreman'
